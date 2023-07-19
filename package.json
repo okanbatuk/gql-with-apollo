@@ -1,0 +1,19 @@
+{
+  "name": "test-graphql",
+  "version": "1.0.0",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "author": "myrnz",
+  "license": "MIT",
+  "dependencies": {
+    "@apollo/server": "^4.7.5",
+    "graphql": "^16.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
