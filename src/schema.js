@@ -7,18 +7,22 @@ export const typeDefs = `#graphql
     id: ID!
     title: String!
     platform: [String!]!
+    reviews: [Review!]!
   }
 
   type Review {
     id: ID!
     rating: Int!
     content: String!
+    game: Game!
+    author: Author!
   }
 
   type Author {
     id: ID!
     name: String!
     verified: Boolean!
+    reviews: [Review!]!
   }
 
   type Query {
@@ -39,5 +43,15 @@ export const resolvers = {
     review: (_, args) => db.reviews.find((review) => review.id === args.id),
     authors: () => db.authors,
     author: (_, args) => db.authors.find((author) => author.id === args.id),
+  },
+  Game: {
+    reviews(parent) {
+      return db.reviews.filter((review) => review.game_id === parent.id);
+    },
+  },
+  Author: {
+    reviews(parent) {
+      return db.reviews.filter((review) => review.author_id === parent.id);
+    },
   },
 };
